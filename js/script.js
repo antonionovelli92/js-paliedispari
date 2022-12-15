@@ -67,11 +67,44 @@ Buon divertimento!
 */
 
 const number = document.getElementById('number')
+const select = document.getElementById('select-option')
 const pari = document.getElementById('par')
 const dispari = document.getElementById('dis')
 //  aggiunto l'1 davanti a button e result per non confonderli con il primo esercizio
 const button1 = document.getElementById('button1')
 const result1 = document.getElementById('result1')
+
+button1.addEventListener('click', function () {
+    const numberUser = number.value.trim();
+    console.log(numberUser);
+    if (numberUser > 5) {
+        result1.innerText = 'inserisci un numero da 1 a 5';
+        return;
+    }
+
+
+    const totalNum = getRandom(1, 5) + numberUser;
+    console.log(totalNum);
+
+    if (totalNum % 2 === 0) {
+        result1.innerText = ' La somma totale è pari'
+    } else {
+        result1.innerText = ' La somma totale è dispari'
+    }
+
+
+})
+function getRandom(min, max) {
+    // o max-1, per portare il mio max a 5
+    max++;
+    const randomNumber = Math.floor(Math.random() * (max - min)) + min;
+    return randomNumber;
+}
+function getOddEven(odd, even) {
+    const parUser = pari;
+    const disUser = dispari;
+
+}
 
 
 
