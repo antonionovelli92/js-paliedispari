@@ -82,10 +82,11 @@ button1.addEventListener('click', function () {
         return;
     }
 
-
+    // todo: numberuser moltiplica il suo numero, perchè??!
     const totalNum = getRandom(1, 5) + numberUser;
     console.log(totalNum);
 
+    // todo probabile funzione??
     if (totalNum % 2 === 0) {
         result1.innerText = ' La somma totale è pari'
     } else {
