@@ -2,6 +2,9 @@
 Palidroma
 Chiedere all’utente di inserire una parola tramiite un form
 Creare una funzione per capire se la parola inserita è palindroma
+
+------------------------------------------------------------------------
+
 Pari e Dispari
 L’utente sceglie pari o dispari e inserisce un numero da 1 a 5 tramiite un form.
 Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
@@ -13,3 +16,46 @@ Consigli del giorno
 2. Scriviamo sempre solo un pezzetto di codice alla volta, se funziona allora andiamo avanti.
 Buon divertimento!
 */
+
+
+const nameInput = document.getElementById('name');
+const button = document.getElementById('button');
+const result = document.getElementById('result');
+
+// creo una funzione
+function reverseName(word) {
+    let final = '';
+
+    for (let i = word.length - 1; i >= 0; i--) {
+        final += word[i];
+    }
+    return final;
+}
+
+
+button.addEventListener('click', function () {
+    const nameUser = nameInput.value.trim();
+
+    // Validazione:
+
+    if (!nameUser) {
+        result.classList.add('text-danger');
+        result.innerText = 'Non hai inserito nessun nome';
+        return;
+    }
+    // creo una costante con la funzione di reverse:
+    const reverse = reverseName(nameUser);
+
+    // verifico se il nome in questione è palindromo
+
+    if (nameUser === reverse) {
+        result.innerText = 'Il tuo nome è palindromo';
+    } else {
+        result.innerText = 'Mi spiace, ma il tuo nome non è palindromo, stacce.';
+    }
+
+})
+
+
+
+
