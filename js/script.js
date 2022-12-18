@@ -66,46 +66,84 @@ Consigli del giorno
 Buon divertimento!
 */
 
+// ! funzione:
+
+function getRandomNumber(min, max) {
+    max++;
+    return Math.floor(Math.random() * (max - min)) + min;
+
+}
+function isEven(number) {
+    return number % 2 === 0;
+}
+
 const number = document.getElementById('number')
-const select = document.getElementById('select-option')
-const pari = document.getElementById('par')
-const dispari = document.getElementById('dis')
-//  aggiunto l'1 davanti a button e result per non confonderli con il primo esercizio
+const select = document.getElementById('choice')
 const button1 = document.getElementById('button1')
 const result1 = document.getElementById('result1')
 
 button1.addEventListener('click', function () {
-    const numberUser = number.value.trim();
-    console.log(numberUser);
-    if (numberUser > 5) {
-        result1.innerText = 'inserisci un numero da 1 a 5';
+    // recupero i dati
+    const userNumber = parseInt(number.value.trim());
+    const userChoice = select.value;
+    // Validazione
+    if (isNaN(userNumber) || userNumber < 1 || userNumber > 5) {
+        alert('Il numero inserito non è valido!')
         return;
     }
+    if (!userChoice || (userChoice !== 'even' && userChoice !== 'odd')) {
+        alert('La scelta non è valida!')
+        return;
 
-    // todo: numberuser moltiplica il suo numero, perchè??!
-    const totalNum = getRandom(1, 5) + numberUser;
-    console.log(totalNum);
-
-    // todo probabile funzione??
-    if (totalNum % 2 === 0) {
-        result1.innerText = ' La somma totale è pari'
-    } else {
-        result1.innerText = ' La somma totale è dispari'
     }
+    // genero un numero random
+    const cpuNumber = getRandomNumber(1, 5);
+    console.log(cpuNumber);
+    // sommo i numeri
+    const sum = userNumber + cpuNumber;
+    console.log(sum);
+
+    // Trovo la scelta giusta;
+    const rightChoice = isEven(sum) ? 'even' : 'odd';
+    // Individuo il vincitore:
+    const winner = userChoice === rightChoice ? 'User' : 'Cpu';
+
+
+    // stampo il risultato
+    result1.innerText = 'The winner is ' + winner;
+
 
 
 })
-function getRandom(min, max) {
-    // o max-1, per portare il mio max a 5
-    max++;
-    const randomNumber = Math.floor(Math.random() * (max - min)) + min;
-    return randomNumber;
-}
-function getOddEven(odd, even) {
-    const parUser = pari;
-    const disUser = dispari;
 
-}
+
+//     // todo: numberuser moltiplica il suo numero, perchè??!
+//     const totalNum = getRandom(1, 5) + numberUser;
+//     console.log(totalNum);
+
+//     // todo probabile funzione??
+//     if (totalNum % 2 === 0) {
+//         result1.innerText = ' La somma totale è pari'
+//     } else {
+//         result1.innerText = ' La somma totale è dispari'
+//     }
+
+
+// })
+// function getRandom(min, max) {
+//     // o max-1, per portare il mio max a 5
+//     max++;
+//     const randomNumber = Math.floor(Math.random() * (max - min)) + min;
+//     return randomNumber;
+// }
+
+
+
+// function getOddEven(odd, even) {
+//     const parUser = pari;
+//     const disUser = dispari;
+
+// }
 
 
 
